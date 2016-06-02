@@ -4,10 +4,14 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
     <bean id="t1000" class="com.epam.ali.spring.model.ModelT1000">
-        <constructor-arg ref="sonyHead"/>
-        <constructor-arg ref="sonyHand"/>
-        <constructor-arg ref="sonyLeg"/>
+        <!--<constructor-arg ref="sonyHead"/>-->
+        <!--<constructor-arg ref="sonyHand"/>-->
+        <!--<constructor-arg ref="sonyLeg"/>-->
+        <property name="head" ref="sonyHead"/>
+        <property name="hand" ref="sonyHand"/>
+        <property name="leg" ref="sonyLeg"/>
     </bean>
+
     <bean id="sonyHead" class="com.epam.ali.spring.model.SonyHeadImpl"/>
     <bean id="sonyHand" class="com.epam.ali.spring.model.SonyHandImpl"/>
     <bean id="sonyLeg" class="com.epam.ali.spring.model.SonyLegImpl"/>
