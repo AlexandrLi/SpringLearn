@@ -7,10 +7,18 @@
     <import resource="robot-parts-context.xml"/>
     <import resource="database-context.xml"/>
 
+    <bean id="t1000Conveyor" class="com.epam.ali.spring.model.T1000Conveyor">
+        <lookup-method name="createRobot" bean="t1000"/>
+    </bean>
+
     <bean id="baseModel" class="com.epam.ali.spring.model.BaseModel" abstract="true"
           c:head-ref="sonyHead" c:hand-ref="sonyHand" c:leg-ref="lgLeg"/>
 
-    <bean id="t1000" class="com.epam.ali.spring.model.ModelT1000" scope="prototype" parent="baseModel" depends-on="dataBase"
-          c:color="red" c:year="2016"/>
+    <bean id="t1000" class="com.epam.ali.spring.model.ModelT1000" scope="prototype" parent="baseModel" depends-on="t1000Conveyor"
+          c:color="red" c:year="2016">
+        <replaced-method name="action" replacer="actionReplacer"/>
+    </bean>
+
+    <bean id="actionReplacer" class="com.epam.ali.spring.model.T1000ActionReplacer"/>
 
 </beans>
