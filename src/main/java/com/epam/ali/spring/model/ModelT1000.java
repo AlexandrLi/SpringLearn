@@ -45,6 +45,14 @@ public class ModelT1000 implements Robot {
         leg.go();
     }
 
+    public void init() {
+        System.out.println("Init T1000 from XML config");
+    }
+
+    public void destroy() {
+        System.out.println("destroy T1000 from XML config");
+    }
+
     @Override
     public void dance() {
         System.out.println("T1000 is dancing!");
