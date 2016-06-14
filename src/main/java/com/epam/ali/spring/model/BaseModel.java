@@ -6,7 +6,7 @@ public abstract class BaseModel implements Robot {
     private Leg leg;
 
     public BaseModel(Head head, Hand hand, Leg leg) {
-        System.out.printf("BaseModel init\n");
+        System.out.println("BaseModel init");
         this.head = head;
         this.hand = hand;
         this.leg = leg;
