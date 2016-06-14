@@ -5,13 +5,12 @@
        default-lazy-init="true" default-init-method="init" default-destroy-method="destroy">
 
     <import resource="robot-parts-context.xml"/>
+    <import resource="database-context.xml"/>
 
-    <bean id="t1000Empty" class="com.epam.ali.spring.model.ModelT1000" scope="prototype">
-        <property name="head" ref="sonyHead"/>
-        <property name="hand" ref="sonyHand"/>
-        <property name="leg" ref="sonyLeg"/>
-    </bean>
-
-    <bean id="t1000" class="com.epam.ali.spring.model.ModelT1000" scope="prototype"
+    <bean id="baseModel" class="com.epam.ali.spring.model.BaseModel" abstract="true"
           c:head-ref="sonyHead" c:hand-ref="sonyHand" c:leg-ref="lgLeg"/>
+
+    <bean id="t1000" class="com.epam.ali.spring.model.ModelT1000" scope="prototype" parent="baseModel" depends-on="dataBase"
+          c:color="red" c:year="2016"/>
+
 </beans>

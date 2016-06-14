@@ -1,48 +1,39 @@
 package com.epam.ali.spring.model;
 
-public class ModelT1000 implements Robot {
-    private Head head;
-    private Hand hand;
-    private Leg leg;
+public class ModelT1000 extends BaseModel {
+    private String color;
+    private int year;
 
     public ModelT1000() {
     }
 
-    public ModelT1000(Head head, Hand hand, Leg leg) {
-        this.head = head;
-        this.hand = hand;
-        this.leg = leg;
+    public ModelT1000(Head head, Hand hand, Leg leg, String color, int year) {
+        super(head, hand, leg);
+        this.color = color;
+        this.year = year;
     }
 
-    public Head getHead() {
-        return head;
+    public String getColor() {
+        return color;
     }
 
-    public void setHead(Head head) {
-        this.head = head;
+    public void setColor(String color) {
+        this.color = color;
     }
 
-    public Hand getHand() {
-        return hand;
+    public int getYear() {
+        return year;
     }
 
-    public void setHand(Hand hand) {
-        this.hand = hand;
-    }
-
-    public Leg getLeg() {
-        return leg;
-    }
-
-    public void setLeg(Leg leg) {
-        this.leg = leg;
+    public void setYear(int year) {
+        this.year = year;
     }
 
     @Override
     public void action() {
-        head.calc();
-        hand.catchSomething();
-        leg.go();
+        getHead().calc();
+        getHand().catchSomething();
+        getLeg().go();
     }
 
     public void init() {
