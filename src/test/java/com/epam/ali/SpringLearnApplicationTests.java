@@ -15,10 +15,6 @@ public class SpringLearnApplicationTests {
     public void contextLoads() {
         ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("App-context.xml");
         ModelT1000 t1000 = context.getBean("t1000", ModelT1000.class);
-        t1000.dance();
-        t1000.action();
-        ModelT1000 t1000Empty = context.getBean("t1000Empty", ModelT1000.class);
-        t1000Empty.action();
     }
 
 }
