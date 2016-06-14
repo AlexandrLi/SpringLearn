@@ -4,6 +4,8 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd"
        default-lazy-init="true" default-init-method="init" default-destroy-method="destroy">
 
+    <import resource="robot-parts-context.xml"/>
+
     <bean id="t1000Empty" class="com.epam.ali.spring.model.ModelT1000" scope="prototype">
         <property name="head" ref="sonyHead"/>
         <property name="hand" ref="sonyHand"/>
@@ -12,11 +14,4 @@
 
     <bean id="t1000" class="com.epam.ali.spring.model.ModelT1000" scope="prototype"
           c:head-ref="sonyHead" c:hand-ref="sonyHand" c:leg-ref="lgLeg"/>
-
-    <bean id="sonyHead" class="com.epam.ali.spring.model.SonyHeadImpl" scope="prototype"/>
-    <bean id="sonyHand" class="com.epam.ali.spring.model.SonyHandImpl" scope="prototype"/>
-    <bean id="sonyLeg" class="com.epam.ali.spring.model.SonyLegImpl" scope="prototype"/>
-    <bean id="lgLeg" class="com.epam.ali.spring.model.LgLegImpl" scope="prototype"/>
-
-    <bean class="com.epam.ali.MyBeanPostProcessor"/>
 </beans>
