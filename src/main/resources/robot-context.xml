@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xmlns:c="http://www.springframework.org/schema/c" xmlns="http://www.springframework.org/schema/beans"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd"
+       xmlns:c="http://www.springframework.org/schema/c" xmlns:util="http://www.springframework.org/schema/util"
+       xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd"
        default-lazy-init="true" default-init-method="init" default-destroy-method="destroy">
 
     <import resource="robot-parts-context.xml"/>
@@ -22,24 +23,23 @@
 
     <bean id="actionReplacer" class="com.epam.ali.spring.T1000ActionReplacer"/>
 
-    <bean id="t1000Pool" class="com.epam.ali.spring.model.T1000Pool">
-        <property name="robotsList">
-            <list>
-                <ref bean="t1000"/>
-                <bean id="t1000ForList" class="com.epam.ali.spring.model.robot.ModelT1000"
-                      c:head-ref="sonyHead" c:hand-ref="sonyHand" c:leg-ref="sonyLeg" c:color="black" c:year="2000"/>
-            </list>
-        </property>
-        <constructor-arg name="robotsMap">
-            <map>
-                <entry key="2010" value-ref="t1000"/>
-                <entry key="2011" value-ref="t1000"/>
-                <entry key="2012" value-ref="t1000"/>
-            </map>
-        </constructor-arg>
-    </bean>
+    <util:list id="robotsList" value-type="com.epam.ali.spring.model.robot.Robot">
+        <ref bean="t1000"/>
+        <bean id="t1000ForList" class="com.epam.ali.spring.model.robot.ModelT1000"
+              c:head-ref="sonyHead" c:hand-ref="sonyHand" c:leg-ref="sonyLeg" c:color="black" c:year="2000"
+              autowire-candidate="false"/>
+    </util:list>
 
-    <bean id="t1000FilteredPool" class="com.epam.ali.spring.model.T1000Pool" parent="t1000Pool">
+    <util:map id="robotsMap">
+        <entry key="2010" value-ref="t1000"/>
+        <entry key="2011" value-ref="t1000"/>
+        <entry key="2012" value-ref="t1000"/>
+    </util:map>
+
+    <bean id="t1000Pool" class="com.epam.ali.spring.model.T1000Pool" autowire="byType"/>
+
+
+    <bean id="t1000FilteredPool" class="com.epam.ali.spring.model.T1000Pool" parent="t1000Pool" autowire="byType">
         <property name="robotsList" value="#{t1000Pool.robotsList.?[color eq 'black']}"/>
     </bean>
 </beans>
