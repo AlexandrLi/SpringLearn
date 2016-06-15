@@ -3,9 +3,9 @@
        xmlns="http://www.springframework.org/schema/beans"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-    <bean id="sonyHead" class="com.epam.ali.spring.model.SonyHeadImpl" scope="prototype"/>
-    <bean id="sonyHand" class="com.epam.ali.spring.model.SonyHandImpl" scope="prototype"/>
-    <bean id="sonyLeg" class="com.epam.ali.spring.model.SonyLegImpl" scope="prototype"/>
-    <bean id="lgLeg" class="com.epam.ali.spring.model.LgLegImpl" scope="prototype"/>
+    <bean id="sonyHead" class="com.epam.ali.spring.model.parts.SonyHeadImpl" scope="prototype"/>
+    <bean id="sonyHand" class="com.epam.ali.spring.model.parts.SonyHandImpl" scope="prototype"/>
+    <bean id="sonyLeg" class="com.epam.ali.spring.model.parts.SonyLegImpl" scope="prototype"/>
+    <bean id="lgLeg" class="com.epam.ali.spring.model.parts.LgLegImpl" scope="prototype"/>
 
 </beans>

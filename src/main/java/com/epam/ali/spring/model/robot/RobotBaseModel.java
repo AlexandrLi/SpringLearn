@@ -1,18 +1,22 @@
-package com.epam.ali.spring.model;
+package com.epam.ali.spring.model.robot;
 
-public abstract class BaseModel implements Robot {
+import com.epam.ali.spring.model.parts.Hand;
+import com.epam.ali.spring.model.parts.Head;
+import com.epam.ali.spring.model.parts.Leg;
+
+public abstract class RobotBaseModel implements Robot {
     private Head head;
     private Hand hand;
     private Leg leg;
 
-    public BaseModel(Head head, Hand hand, Leg leg) {
-        System.out.println("BaseModel init");
+    public RobotBaseModel(Head head, Hand hand, Leg leg) {
+        System.out.println("RobotBaseModel init");
         this.head = head;
         this.hand = hand;
         this.leg = leg;
     }
 
-    public BaseModel() {
+    public RobotBaseModel() {
 
     }
 

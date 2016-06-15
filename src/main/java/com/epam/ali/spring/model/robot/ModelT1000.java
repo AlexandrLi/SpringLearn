@@ -1,6 +1,10 @@
-package com.epam.ali.spring.model;
+package com.epam.ali.spring.model.robot;
 
-public class ModelT1000 extends BaseModel {
+import com.epam.ali.spring.model.parts.Hand;
+import com.epam.ali.spring.model.parts.Head;
+import com.epam.ali.spring.model.parts.Leg;
+
+public class ModelT1000 extends RobotBaseModel {
     private String color;
     private int year;
 
@@ -34,6 +38,7 @@ public class ModelT1000 extends BaseModel {
         getHead().calc();
         getHand().catchSomething();
         getLeg().go();
+        System.out.println("T1000 color: "+this.color+", year: "+this.year);
     }
 
     public void init() {

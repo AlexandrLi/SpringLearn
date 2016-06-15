@@ -1,4 +1,4 @@
-package com.epam.ali;
+package com.epam.ali.spring;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

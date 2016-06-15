@@ -1,4 +1,4 @@
-package com.epam.ali.spring.model;
+package com.epam.ali.spring.model.parts;
 
 public interface Hand {
 

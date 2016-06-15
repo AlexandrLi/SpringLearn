@@ -1,4 +1,4 @@
-package com.epam.ali.spring.model;
+package com.epam.ali.spring;
 
 import org.springframework.beans.factory.support.MethodReplacer;
 
