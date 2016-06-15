@@ -11,14 +11,35 @@
         <lookup-method name="createRobot" bean="t1000"/>
     </bean>
 
-    <bean id="baseModel" class="com.epam.ali.spring.model.BaseModel" abstract="true"
+    <bean id="baseModel" class="com.epam.ali.spring.model.robot.RobotBaseModel" abstract="true"
           c:head-ref="sonyHead" c:hand-ref="sonyHand" c:leg-ref="lgLeg"/>
 
-    <bean id="t1000" class="com.epam.ali.spring.model.ModelT1000" scope="prototype" parent="baseModel" depends-on="t1000Conveyor"
+    <bean id="t1000" class="com.epam.ali.spring.model.robot.ModelT1000" scope="prototype" parent="baseModel"
+          depends-on="t1000Conveyor"
           c:color="red" c:year="2016">
         <replaced-method name="action" replacer="actionReplacer"/>
     </bean>
 
-    <bean id="actionReplacer" class="com.epam.ali.spring.model.T1000ActionReplacer"/>
+    <bean id="actionReplacer" class="com.epam.ali.spring.T1000ActionReplacer"/>
 
+    <bean id="t1000Pool" class="com.epam.ali.spring.model.T1000Pool">
+        <property name="robotsList">
+            <list>
+                <ref bean="t1000"/>
+                <bean id="t1000ForList" class="com.epam.ali.spring.model.robot.ModelT1000"
+                      c:head-ref="sonyHead" c:hand-ref="sonyHand" c:leg-ref="sonyLeg" c:color="black" c:year="2000"/>
+            </list>
+        </property>
+        <constructor-arg name="robotsMap">
+            <map>
+                <entry key="2010" value-ref="t1000"/>
+                <entry key="2011" value-ref="t1000"/>
+                <entry key="2012" value-ref="t1000"/>
+            </map>
+        </constructor-arg>
+    </bean>
+
+    <bean id="t1000FilteredPool" class="com.epam.ali.spring.model.T1000Pool" parent="t1000Pool">
+        <property name="robotsList" value="#{t1000Pool.robotsList.?[color eq 'black']}"/>
+    </bean>
 </beans>
