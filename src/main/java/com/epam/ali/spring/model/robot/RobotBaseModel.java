@@ -3,25 +3,24 @@ package com.epam.ali.spring.model.robot;
 import com.epam.ali.spring.model.parts.Hand;
 import com.epam.ali.spring.model.parts.Head;
 import com.epam.ali.spring.model.parts.Leg;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 
 public abstract class RobotBaseModel implements Robot {
+    @Autowired
+    @Qualifier("sonyHead")
     private Head head;
+    @Autowired
+    @Qualifier("lgHand")
     private Hand hand;
+    @Autowired
+    @Qualifier("lgLeg")
     private Leg leg;
 
-    public RobotBaseModel(Head head, Hand hand, Leg leg) {
-        System.out.println("RobotBaseModel init");
-        this.head = head;
-        this.hand = hand;
-        this.leg = leg;
-    }
-
     public RobotBaseModel() {
-
     }
 
     public Head getHead() {
-
         return head;
     }
 

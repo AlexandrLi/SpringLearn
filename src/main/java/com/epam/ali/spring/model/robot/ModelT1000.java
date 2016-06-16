@@ -1,27 +1,21 @@
 package com.epam.ali.spring.model.robot;
 
-import com.epam.ali.spring.model.parts.Hand;
-import com.epam.ali.spring.model.parts.Head;
-import com.epam.ali.spring.model.parts.Leg;
+import com.epam.ali.spring.model.Color;
+import org.springframework.beans.factory.annotation.Required;
 
 public class ModelT1000 extends RobotBaseModel {
-    private String color;
+    private Color color;
     private int year;
 
     public ModelT1000() {
     }
 
-    public ModelT1000(Head head, Hand hand, Leg leg, String color, int year) {
-        super(head, hand, leg);
-        this.color = color;
-        this.year = year;
-    }
-
-    public String getColor() {
+    public Color getColor() {
         return color;
     }
 
-    public void setColor(String color) {
+    @Required
+    public void setColor(Color color) {
         this.color = color;
     }
 
@@ -29,6 +23,7 @@ public class ModelT1000 extends RobotBaseModel {
         return year;
     }
 
+    @Required
     public void setYear(int year) {
         this.year = year;
     }
@@ -38,19 +33,7 @@ public class ModelT1000 extends RobotBaseModel {
         getHead().calc();
         getHand().catchSomething();
         getLeg().go();
-        System.out.println("T1000 color: "+this.color+", year: "+this.year);
+        System.out.println("T1000 color: " + this.color + ", year: " + this.year);
     }
 
-    public void init() {
-        System.out.println("Init T1000 from XML config");
-    }
-
-    public void destroy() {
-        System.out.println("destroy T1000 from XML config");
-    }
-
-    @Override
-    public void dance() {
-        System.out.println("T1000 is dancing!");
-    }
 }

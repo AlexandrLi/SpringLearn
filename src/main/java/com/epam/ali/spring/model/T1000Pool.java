@@ -1,19 +1,42 @@
 package com.epam.ali.spring.model;
 
+import com.epam.ali.spring.RobotColor;
 import com.epam.ali.spring.model.robot.Robot;
+import org.springframework.beans.factory.annotation.Autowired;
 
+import javax.annotation.Resource;
 import java.util.Collection;
-import java.util.Map;
 
+@SuppressWarnings("SpringJavaAutowiringInspection")
 public class T1000Pool implements RobotPool {
+
+    @Autowired
+    @Resource(name = "robotsList")
     private Collection<Robot> robotsList;
-    private Map<String, Robot> robotsMap;
+    @Autowired
+    @RobotColor(color = Color.BLACK)
+    private Robot blackT1000;
+    @Autowired
+    @RobotColor(color = Color.WHITE)
+    private Robot whiteT1000;
 
     public T1000Pool() {
     }
 
-    public T1000Pool(Map<String, Robot> robotsMap) {
-        this.robotsMap = robotsMap;
+    public Robot getBlackT1000() {
+        return blackT1000;
+    }
+
+    public void setBlackT1000(Robot blackT1000) {
+        this.blackT1000 = blackT1000;
+    }
+
+    public Robot getWhiteT1000() {
+        return whiteT1000;
+    }
+
+    public void setWhiteT1000(Robot whiteT1000) {
+        this.whiteT1000 = whiteT1000;
     }
 
     @Override
@@ -25,17 +48,8 @@ public class T1000Pool implements RobotPool {
         this.robotsList = robotsList;
     }
 
-    @Override
-    public Map<String, Robot> getRobotsMap() {
-        return robotsMap;
-    }
-
-    public void setRobotsMap(Map<String, Robot> robotsMap) {
-        this.robotsMap = robotsMap;
-    }
 
     public void action() {
         robotsList.forEach(Robot::action);
-        robotsMap.forEach((s, robot) -> System.out.println(s + " " + robot));
     }
 }

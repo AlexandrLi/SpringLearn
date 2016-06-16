@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xmlns:c="http://www.springframework.org/schema/c" xmlns:util="http://www.springframework.org/schema/util"
-       xmlns="http://www.springframework.org/schema/beans"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xmlns:p="http://www.springframework.org/schema/p" xmlns="http://www.springframework.org/schema/beans"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd"
-       default-lazy-init="true" default-init-method="init" default-destroy-method="destroy">
+       default-lazy-init="true">
 
     <import resource="robot-parts-context.xml"/>
     <import resource="database-context.xml"/>
@@ -12,13 +12,20 @@
         <lookup-method name="createRobot" bean="t1000"/>
     </bean>
 
-    <bean id="baseModel" class="com.epam.ali.spring.model.robot.RobotBaseModel" abstract="true"
-          c:head-ref="sonyHead" c:hand-ref="sonyHand" c:leg-ref="lgLeg"/>
+    <bean id="baseModel" class="com.epam.ali.spring.model.robot.RobotBaseModel" abstract="true"/>
 
     <bean id="t1000" class="com.epam.ali.spring.model.robot.ModelT1000" scope="prototype" parent="baseModel"
-          depends-on="t1000Conveyor"
-          c:color="red" c:year="2016">
+          depends-on="t1000Conveyor" p:color="BLACK" p:year="2015">
+        <qualifier type="com.epam.ali.spring.RobotColor">
+            <attribute key="color" value="BLACK"/>
+        </qualifier>
         <replaced-method name="action" replacer="actionReplacer"/>
+    </bean>
+
+    <bean id="t1000White" class="com.epam.ali.spring.model.robot.ModelT1000" scope="prototype" parent="t1000" p:color="WHITE">
+        <qualifier type="com.epam.ali.spring.RobotColor">
+            <attribute key="color" value="WHITE"/>
+        </qualifier>
     </bean>
 
     <bean id="actionReplacer" class="com.epam.ali.spring.T1000ActionReplacer"/>
@@ -26,20 +33,12 @@
     <util:list id="robotsList" value-type="com.epam.ali.spring.model.robot.Robot">
         <ref bean="t1000"/>
         <bean id="t1000ForList" class="com.epam.ali.spring.model.robot.ModelT1000"
-              c:head-ref="sonyHead" c:hand-ref="sonyHand" c:leg-ref="sonyLeg" c:color="black" c:year="2000"
-              autowire-candidate="false"/>
+              p:color="WHITE" p:year="2016" autowire-candidate="false"/>
     </util:list>
 
-    <util:map id="robotsMap">
-        <entry key="2010" value-ref="t1000"/>
-        <entry key="2011" value-ref="t1000"/>
-        <entry key="2012" value-ref="t1000"/>
-    </util:map>
+    <bean id="t1000Pool" class="com.epam.ali.spring.model.T1000Pool" p:robotsList-ref="robotsList"/>
 
-    <bean id="t1000Pool" class="com.epam.ali.spring.model.T1000Pool" autowire="byType"/>
-
-
-    <bean id="t1000FilteredPool" class="com.epam.ali.spring.model.T1000Pool" parent="t1000Pool" autowire="byType">
-        <property name="robotsList" value="#{t1000Pool.robotsList.?[color eq 'black']}"/>
+    <bean id="t1000FilteredPool" class="com.epam.ali.spring.model.T1000Pool" parent="t1000Pool">
+        <property name="robotsList" value="#{t1000Pool.robotsList.?[color eq T(com.epam.ali.spring.model.Color).BLACK]}"/>
     </bean>
 </beans>
