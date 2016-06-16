@@ -1,11 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns="http://www.springframework.org/schema/beans"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd"
+       default-lazy-init="true">
 
     <bean id="sonyHead" class="com.epam.ali.spring.model.parts.SonyHeadImpl" scope="prototype"/>
     <bean id="sonyHand" class="com.epam.ali.spring.model.parts.SonyHandImpl" scope="prototype"/>
     <bean id="sonyLeg" class="com.epam.ali.spring.model.parts.SonyLegImpl" scope="prototype"/>
+
+    <bean id="lgHead" class="com.epam.ali.spring.model.parts.LgHeadImpl" scope="prototype"/>
+    <bean id="lgHand" class="com.epam.ali.spring.model.parts.LgHandImpl" scope="prototype"/>
     <bean id="lgLeg" class="com.epam.ali.spring.model.parts.LgLegImpl" scope="prototype"/>
 
 </beans>
