@@ -1,7 +1,7 @@
 package com.epam.ali;
 
 import com.epam.ali.spring.SpringLearnApplication;
-import com.epam.ali.spring.model.T1000Pool;
+import com.epam.ali.spring.model.robot.ModelT1000;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.SpringApplicationConfiguration;
@@ -15,10 +15,8 @@ public class SpringLearnApplicationTests {
     @Test
     public void contextLoads() {
         ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("App-context.xml");
-        T1000Pool t1000Pool = context.getBean("t1000Pool", T1000Pool.class);
-        t1000Pool.action();
-        T1000Pool t1000FilteredPool = context.getBean("t1000FilteredPool", T1000Pool.class);
-        t1000FilteredPool.action();
+        ModelT1000 t1000 = context.getBean("modelT1000", ModelT1000.class);
+        t1000.action();
     }
 
 }

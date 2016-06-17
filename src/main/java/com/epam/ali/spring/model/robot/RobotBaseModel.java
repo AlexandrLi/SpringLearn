@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 
 public abstract class RobotBaseModel implements Robot {
     @Autowired
-    @Qualifier("sonyHead")
+    @Qualifier("lgHead")
     private Head head;
     @Autowired
     @Qualifier("lgHand")
