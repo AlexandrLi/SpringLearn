@@ -4,6 +4,7 @@ import com.epam.ali.spring.model.parts.Hand;
 import com.epam.ali.spring.model.parts.Head;
 import com.epam.ali.spring.model.parts.Leg;
 
+import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -44,5 +45,10 @@ public abstract class RobotBaseModel implements Robot {
 
     public void setLeg(Leg leg) {
         this.leg = leg;
+    }
+
+    @PostConstruct
+    public void init() {
+        System.out.println("Base model initialization...");
     }
 }
