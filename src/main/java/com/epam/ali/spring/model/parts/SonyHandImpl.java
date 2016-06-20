@@ -1,18 +1,9 @@
 package com.epam.ali.spring.model.parts;
 
-import org.springframework.beans.factory.config.ConfigurableBeanFactory;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Scope;
+import javax.inject.Named;
 
-@Configuration
+@Named("sonyHand")
 public class SonyHandImpl implements Hand {
-
-    @Bean
-    @Scope(value = ConfigurableBeanFactory.SCOPE_PROTOTYPE)
-    public SonyHandImpl sonyHand() {
-        return new SonyHandImpl();
-    }
 
     @Override
     public void catchSomething() {

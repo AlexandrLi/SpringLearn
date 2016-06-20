@@ -1,13 +1,8 @@
 package com.epam.ali.spring.model.parts;
 
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.beans.factory.config.ConfigurableBeanFactory;
-import org.springframework.context.annotation.Scope;
-import org.springframework.stereotype.Component;
+import javax.inject.Named;
 
-@Component
-@Qualifier("lgLeg")
-@Scope(value = ConfigurableBeanFactory.SCOPE_PROTOTYPE)
+@Named("lgLeg")
 public class LgLegImpl implements Leg {
 
     @Override

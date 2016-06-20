@@ -2,21 +2,20 @@ package com.epam.ali.spring.model;
 
 import com.epam.ali.spring.RobotColor;
 import com.epam.ali.spring.model.robot.Robot;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.annotation.Resource;
+import javax.inject.Inject;
 import java.util.Collection;
 
-@SuppressWarnings("SpringJavaAutowiringInspection")
+//@SuppressWarnings("SpringJavaAutowiringInspection")
 public class T1000Pool implements RobotPool {
 
-    @Autowired
     @Resource(name = "robotsList")
     private Collection<Robot> robotsList;
-    @Autowired
+    @Inject
     @RobotColor(color = Color.BLACK)
     private Robot blackT1000;
-    @Autowired
+    @Inject
     @RobotColor(color = Color.WHITE)
     private Robot whiteT1000;
 
