@@ -17,6 +17,7 @@ public class SpringLearnApplicationTests {
         ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("App-context.xml");
         ModelT1000 t1000 = context.getBean("t1000", ModelT1000.class);
         t1000.action();
+        t1000 = null;
     }
 
 }

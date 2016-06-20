@@ -5,6 +5,7 @@ import com.epam.ali.spring.model.parts.Head;
 import com.epam.ali.spring.model.parts.Leg;
 
 import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -50,5 +51,10 @@ public abstract class RobotBaseModel implements Robot {
     @PostConstruct
     public void init() {
         System.out.println("Base model initialization...");
+    }
+
+    @PreDestroy
+    public void destroy() {
+        System.out.println("Base model destroyed!!");
     }
 }
