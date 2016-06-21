@@ -13,5 +13,8 @@
             <aop:after-returning method="printValue" pointcut-ref="getValue" returning="value"/>
             <aop:after method="close" pointcut-ref="getValue"/>
         </aop:aspect>
+        <aop:aspect id="timeLog" ref="myLogger">
+            <aop:around method="watchTime" pointcut="execution(public * *(..))"/>
+        </aop:aspect>
     </aop:config>
 </beans>
