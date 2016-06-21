@@ -6,7 +6,6 @@
        default-lazy-init="true" default-init-method="init" default-destroy-method="destroy">
 
     <import resource="robot-parts-context.xml"/>
-    <import resource="database-context.xml"/>
 
     <bean id="t1000Conveyor" class="com.epam.ali.spring.model.T1000Conveyor">
         <lookup-method name="createRobot" bean="t1000"/>
