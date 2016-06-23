@@ -10,6 +10,7 @@ import java.util.TreeSet;
 @Named
 public class FileManager {
 
+    @CheckTime
     public Set<String> getExtensionList(String folder) {
         File dir = new File(folder);
         TreeSet<String> extList = new TreeSet<>();
@@ -23,6 +24,7 @@ public class FileManager {
         return extList;
     }
 
+    @CheckTime
     public Map<String, Integer> getExtensionCount(String folder) {
         File dir = new File(folder);
         HashMap<String, Integer> map = new HashMap<>();

@@ -4,7 +4,6 @@ import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.AfterReturning;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
-import org.aspectj.lang.annotation.Pointcut;
 
 import javax.inject.Named;
 import java.util.Map;
@@ -13,10 +12,6 @@ import java.util.Set;
 @Named
 @Aspect
 public class MyLogger {
-
-    @Pointcut("execution(* * (..)) && within(com.epam.ali.spring.aop.*)")
-    public void allMethods() {
-    }
 
     public void printValue(Object value) {
         System.out.println(value);
@@ -30,7 +25,7 @@ public class MyLogger {
         System.out.println("close");
     }
 
-    @Around("allMethods()")
+    @Around("@annotation(com.epam.ali.spring.aop.CheckTime)")
     public Object watchTime(ProceedingJoinPoint joinPoint) throws Throwable {
         long start = System.currentTimeMillis();
         System.out.println("Begin method " + joinPoint.getSignature().toShortString());
@@ -45,12 +40,14 @@ public class MyLogger {
         return output;
     }
 
-    @AfterReturning(pointcut = "allMethods()", returning = "collection")
-    private void print(Object collection) {
-        if (collection instanceof Set) {
-            ((Set) collection).forEach(System.out::println);
-        } else if (collection instanceof Map) {
-            ((Map) collection).forEach((o, o2) -> System.out.println("key: " + o + " value: " + o2));
+    @AfterReturning(pointcut = "@annotation(ShowResult)", returning = "object")
+    private void print(Object object) {
+        if (object instanceof Set) {
+            ((Set) object).forEach(System.out::println);
+        } else if (object instanceof Map) {
+            ((Map) object).forEach((o, o2) -> System.out.println("key: " + o + " value: " + o2));
+        } else {
+            System.out.println(object);
         }
     }
 }
