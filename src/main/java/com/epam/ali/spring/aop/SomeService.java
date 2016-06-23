@@ -1,5 +1,7 @@
 package com.epam.ali.spring.aop;
 
+import com.epam.ali.spring.aop.annotation.ShowResult;
+
 import javax.inject.Named;
 
 @Named

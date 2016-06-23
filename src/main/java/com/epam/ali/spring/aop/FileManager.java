@@ -1,5 +1,7 @@
 package com.epam.ali.spring.aop;
 
+import com.epam.ali.spring.aop.annotation.CheckTime;
+
 import javax.inject.Named;
 import java.io.File;
 import java.util.HashMap;
@@ -8,9 +10,10 @@ import java.util.Set;
 import java.util.TreeSet;
 
 @Named
-public class FileManager {
+public class FileManager implements Manager {
 
     @CheckTime
+    @Override
     public Set<String> getExtensionList(String folder) {
         File dir = new File(folder);
         TreeSet<String> extList = new TreeSet<>();
@@ -25,6 +28,7 @@ public class FileManager {
     }
 
     @CheckTime
+    @Override
     public Map<String, Integer> getExtensionCount(String folder) {
         File dir = new File(folder);
         HashMap<String, Integer> map = new HashMap<>();
